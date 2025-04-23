@@ -1,5 +1,6 @@
 package com.shernillelicud.food_delivery.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -17,7 +18,6 @@ import java.util.List;
 @Builder
 public class Restaurant {
 
-    public record Contact(String email, String mobile, String twitter, String instagram){}
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -35,7 +35,8 @@ public class Restaurant {
     @OneToOne
     private Address address;
 
-    private Contact contact;
+    @OneToOne
+    private RestaurantContact contact;
 
     private String openingHours;
 
@@ -45,6 +46,12 @@ public class Restaurant {
     @ElementCollection
     @Column(length = 1000)
     private List<String> images;
-    
+
     private LocalDateTime registrationDate;
+
+    private boolean isOpen;
+
+    @JsonIgnore
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "restaurant")
+    private List<Food> foods = new ArrayList<>();
 }

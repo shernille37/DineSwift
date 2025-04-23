@@ -42,8 +42,8 @@ public class User implements UserDetails {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "customer")
     private List<Order> orders = new ArrayList<>();
 
-    @ElementCollection
-    private List<RestaurantDto> favorites = new ArrayList<>();
+    @ManyToMany
+    private List<Restaurant> favorites = new ArrayList<>();
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "owner")
     private List<Restaurant> ownedRestaurant = new ArrayList<>();

@@ -39,7 +39,6 @@ public class Food {
 
     private boolean isAvailable;
 
-
     private boolean isVegetarian;
     private boolean isSeasonal;
 

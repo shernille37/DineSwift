@@ -3,6 +3,7 @@ package com.shernillelicud.food_delivery.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -10,17 +11,21 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Ingredient {
+@Builder
+public class CartItem {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private String name;
+    @JsonIgnore
+    @ManyToOne
+    private Cart cart;
 
     @ManyToOne
-    private IngredientCategory category;
+    private Food food;
 
+    private Integer quantity;
 
-    private boolean isInStock = true;
+    private Long totalPrice;
 }

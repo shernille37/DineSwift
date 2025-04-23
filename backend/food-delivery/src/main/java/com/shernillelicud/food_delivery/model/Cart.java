@@ -1,6 +1,5 @@
 package com.shernillelicud.food_delivery.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,19 +10,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Data
 @Builder
-public class Category {
+public class Cart {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private String name;
+    @OneToOne
+    private User customer;
 
-    @JsonIgnore
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "category")
-    private List<Food> foods = new ArrayList<>();
+    private Long totalPrice;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cart", orphanRemoval = true)
+    private List<CartItem> cartItems = new ArrayList<>();
+
+
+
 }
