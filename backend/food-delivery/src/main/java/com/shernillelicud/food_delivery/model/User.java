@@ -35,7 +35,7 @@ public class User implements UserDetails {
 
     private String password;
 
-    private Role role;
+    private Role role = Role.CUSTOMER;
 
 
     @JsonIgnore
