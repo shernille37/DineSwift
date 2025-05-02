@@ -1,4 +1,4 @@
-package com.shernillelicud.food_delivery.dto;
+package com.shernillelicud.food_delivery.dto.restaurant;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;

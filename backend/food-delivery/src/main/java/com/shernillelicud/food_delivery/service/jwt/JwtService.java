@@ -48,6 +48,11 @@ public class JwtService {
         return claims.getSubject();
     }
 
+    public String extractEmailFromBearer(String header) {
+        final Claims claims = extractAllClaims(header.split(" ")[1]);
+        return claims.getSubject();
+    }
+
     public boolean isTokenExpired(String token) {
         Claims claims = extractAllClaims(token);
         return claims.getExpiration().before(new Date());

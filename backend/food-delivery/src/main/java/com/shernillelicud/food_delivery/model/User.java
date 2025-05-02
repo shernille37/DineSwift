@@ -1,7 +1,6 @@
 package com.shernillelicud.food_delivery.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.shernillelicud.food_delivery.dto.RestaurantDto;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
