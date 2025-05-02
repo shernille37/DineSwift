@@ -13,7 +13,12 @@ public class GlobalExceptionHandler {
 
 
     @ExceptionHandler(UsernameNotFoundException.class)
-    public ResponseEntity<ApiResponse> userNotFound(Exception e) {
+    public ResponseEntity<ApiResponse> userNotFound(UsernameNotFoundException e) {
+        return new ResponseEntity<>(new ApiResponse(e.getMessage(), null), HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(RestaurantNotFoundException.class)
+    public ResponseEntity<ApiResponse> restaurantNotFound(RestaurantNotFoundException e) {
         return new ResponseEntity<>(new ApiResponse(e.getMessage(), null), HttpStatus.NOT_FOUND);
     }
 

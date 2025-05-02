@@ -32,14 +32,15 @@ public class Restaurant {
 
     private String cuisineType;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private Address address;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private RestaurantContact contact;
 
     private String openingHours;
 
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "restaurant")
     private List<Order> orders = new ArrayList<>();
 
@@ -49,7 +50,7 @@ public class Restaurant {
 
     private LocalDateTime registrationDate;
 
-    private boolean isOpen;
+    private boolean isOpen = false;
 
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "restaurant")

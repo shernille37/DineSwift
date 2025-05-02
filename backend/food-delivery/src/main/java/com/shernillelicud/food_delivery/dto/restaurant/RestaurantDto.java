@@ -1,5 +1,6 @@
 package com.shernillelicud.food_delivery.dto.restaurant;
 
+import com.shernillelicud.food_delivery.dto.user.OwnerRestaurantDto;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 import lombok.Data;
@@ -15,10 +16,14 @@ public class RestaurantDto {
 
     private String name;
 
+    private OwnerRestaurantDto owner;
+
     @Column(length = 1000)
     private List<String> images = new ArrayList<>();
 
     private String description;
+
+    private String cuisineType;
 
 
 }
