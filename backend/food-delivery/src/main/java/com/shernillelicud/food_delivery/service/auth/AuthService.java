@@ -80,6 +80,7 @@ public class AuthService implements IAuthService {
         String jwtToken = jwtService.generateToken(user);
 
         AuthDto authDto = modelMapper.map(user, AuthDto.class);
+        authDto.setFullname(user.getFirstname() + " " + user.getLastname());
         authDto.setToken(jwtToken);
 
         return authDto;

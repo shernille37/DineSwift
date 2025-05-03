@@ -25,5 +25,7 @@ public class RestaurantDto {
 
     private String cuisineType;
 
+    private Boolean isOpen;
+
 
 }

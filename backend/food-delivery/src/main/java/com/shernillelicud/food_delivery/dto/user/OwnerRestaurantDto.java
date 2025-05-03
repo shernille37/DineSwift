@@ -9,9 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class OwnerRestaurantDto {
 
-    private String firstname;
-
-    private String lastname;
+    private String fullname;
 
     private String email;
 

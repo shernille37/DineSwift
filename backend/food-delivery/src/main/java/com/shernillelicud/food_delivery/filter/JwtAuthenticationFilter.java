@@ -38,10 +38,11 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             return;
         }
 
-        jwt = authHeader.split(" ")[1];
-        email = jwtService.extractEmail(jwt);
 
         try {
+
+            jwt = authHeader.split(" ")[1];
+            email = jwtService.extractEmail(jwt);
             if(email != null && SecurityContextHolder.getContext().getAuthentication() == null) {
 
                 UserDetails userDetails = userDetailsService.loadUserByUsername(email);
@@ -53,8 +54,6 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
                     SecurityContextHolder.getContext().setAuthentication(authToken);
                 }
-
-                request.setAttribute("email", email);
 
             }
 

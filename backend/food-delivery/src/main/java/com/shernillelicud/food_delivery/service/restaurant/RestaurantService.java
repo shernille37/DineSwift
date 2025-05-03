@@ -14,7 +14,9 @@ import com.shernillelicud.food_delivery.request.restaurant.NewRestaurantRequest;
 import com.shernillelicud.food_delivery.service.user.UserService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.List;
 
@@ -47,21 +49,24 @@ public class RestaurantService implements IRestaurantService {
     @Override
     public Restaurant addRestaurant(NewRestaurantRequest request, User owner) {
 
-        Address address = addressRepository.save(request.getAddress());
-        RestaurantContact restaurantContact = restaurantContactRepository.save(request.getRestaurantContact());
+        addressRepository.save(request.getAddress());
+        restaurantContactRepository.save(request.getRestaurantContact());
 
         Restaurant newRestaurant = modelMapper.map(request, Restaurant.class);
+
         newRestaurant.setOwner(owner);
 
         return restaurantRepository.save(newRestaurant);
     }
+
+
+
 
     @Override
     public Restaurant updateRestaurant(Long id, NewRestaurantRequest request) {
         Restaurant restaurant = restaurantRepository.findById(id)
                 .orElseThrow(RestaurantNotFoundException::new);
 
-        modelMapper.getConfiguration().setSkipNullEnabled(true);
         modelMapper.map(request, restaurant);
 
         return restaurant;
@@ -100,13 +105,17 @@ public class RestaurantService implements IRestaurantService {
         Restaurant restaurant = restaurantRepository.findById(id)
                 .orElseThrow(RestaurantNotFoundException::new);
 
-        restaurant.setOpen(!restaurant.isOpen());
+        restaurant.setIsOpen(!restaurant.getIsOpen());
 
         return restaurantRepository.save(restaurant);
     }
 
     @Override
     public RestaurantDto convertToDto(Restaurant restaurant) {
-        return modelMapper.map(restaurant, RestaurantDto.class);
+        RestaurantDto restaurantDto =  modelMapper.map(restaurant, RestaurantDto.class);
+
+        restaurantDto.getOwner().setFullname(restaurant.getOwner().getFirstname() + " " + restaurant.getOwner().getLastname());
+
+        return restaurantDto;
     }
 }

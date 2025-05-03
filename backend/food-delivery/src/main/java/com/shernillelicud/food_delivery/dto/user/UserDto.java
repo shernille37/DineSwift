@@ -13,9 +13,7 @@ import java.util.List;
 @AllArgsConstructor
 public class UserDto {
 
-    private String firstname;
-
-    private String lastname;
+    private String fullname;
 
     private String email;
 

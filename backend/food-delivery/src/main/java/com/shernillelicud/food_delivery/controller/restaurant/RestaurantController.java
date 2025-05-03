@@ -23,7 +23,6 @@ public class RestaurantController {
     private final IUserService userService;
     private final IRestaurantService restaurantService;
 
-
     @GetMapping
     public ResponseEntity<ApiResponse> getAllRestaurants() {
 
@@ -46,6 +45,25 @@ public class RestaurantController {
 
         Restaurant restaurant = restaurantService.getRestaurantById(Long.valueOf(id));
         RestaurantDto restaurantDto = restaurantService.convertToDto(restaurant);
+
+        ApiResponse apiResponse = ApiResponse.builder()
+                .message("Success")
+                .data(restaurantDto)
+                .build();
+
+        return new ResponseEntity<>(apiResponse, HttpStatus.OK);
+
+    }
+
+    @GetMapping("/search")
+    public ResponseEntity<ApiResponse> searchRestaurant(
+            @RequestParam String keyword
+            ) {
+
+        List<Restaurant> restaurants = restaurantService.searchRestaurant(keyword);
+        List<RestaurantDto> restaurantDto = restaurants.stream()
+                .map(restaurantService::convertToDto)
+                .toList();
 
         ApiResponse apiResponse = ApiResponse.builder()
                 .message("Success")
@@ -91,5 +109,38 @@ public class RestaurantController {
 
         return new ResponseEntity<>(apiResponse,HttpStatus.OK);
     }
+
+    @PutMapping("/{id}/status")
+    public ResponseEntity<ApiResponse> updateRestaurantStatus(@PathVariable String id) {
+
+        Restaurant updatedRestaurant = restaurantService.updateRestaurantStatus(Long.valueOf(id));
+        RestaurantDto restaurantDto = restaurantService.convertToDto(updatedRestaurant);
+
+        ApiResponse apiResponse = ApiResponse.builder()
+                .message("Restaurant status updated successfully")
+                .data(restaurantDto)
+                .build();
+
+        return new ResponseEntity<>(apiResponse,HttpStatus.OK);
+    }
+
+
+    @PutMapping("/{id}/favorites")
+    public ResponseEntity<ApiResponse> addToFavorites(@RequestHeader("Authorization") String bearerToken, @PathVariable String id) {
+
+        User user = userService.findUserByJwtToken(bearerToken);
+
+        Restaurant favoriteRestaurant = restaurantService.addToFavorites(Long.valueOf(id), user);
+        RestaurantDto restaurantDto = restaurantService.convertToDto(favoriteRestaurant);
+
+        ApiResponse apiResponse = ApiResponse.builder()
+                .message("Restaurant added to favorites")
+                .data(restaurantDto)
+                .build();
+
+        return new ResponseEntity<>(apiResponse,HttpStatus.OK);
+    }
+
+
 
 }
