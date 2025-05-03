@@ -2,6 +2,7 @@ package com.shernillelicud.food_delivery.repository.food;
 
 import com.shernillelicud.food_delivery.model.Category;
 import com.shernillelicud.food_delivery.model.Food;
+import com.shernillelicud.food_delivery.model.Restaurant;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -10,7 +11,7 @@ import java.util.List;
 
 public interface FoodRepository extends JpaRepository<Food, Long> {
 
-    List<Food> findByRestaurantId(Long id);
+    List<Food> findByRestaurant(Restaurant restaurant);
 
     List<Food> findByIsSeasonalTrue();
 

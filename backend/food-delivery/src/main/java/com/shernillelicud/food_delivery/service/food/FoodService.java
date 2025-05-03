@@ -78,13 +78,13 @@ public class FoodService implements IFoodService {
         Restaurant restaurant = restaurantRepository.findById(restaurantId)
                 .orElseThrow(RestaurantNotFoundException::new);
 
-        List<Food> foodList = foodRepository.findByRestaurantId(restaurantId);
+        List<Food> foodList = foodRepository.findByRestaurant(restaurant);
 
         if(isVegetarian) {
             foodList = foodRepository.findByIsVegetarianTrue();
         } else if (isSeasonal) {
             foodList = foodRepository.findByIsSeasonalTrue();
-        } else {
+        } else if(!category.isEmpty()) {
             foodList = foodRepository.findByCategoryName(category);
         }
 

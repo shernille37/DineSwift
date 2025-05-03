@@ -40,6 +40,7 @@ public class Food {
     private Boolean isAvailable;
 
     private Boolean isVegetarian;
+
     private Boolean isSeasonal;
 
     @ManyToMany
