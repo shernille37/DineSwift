@@ -1,8 +1,10 @@
 package com.shernillelicud.food_delivery.service.jwt;
 
+import io.github.cdimascio.dotenv.Dotenv;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
@@ -12,16 +14,18 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Service
+@RequiredArgsConstructor
 public class JwtService {
 
     private static final String SECRET_KEY = "61q9y7VY861uqBn/n+OJ0E96Hi997eSLb1jFjS+KLa4=";
+    private final Dotenv dotenv;
 
     private Claims extractAllClaims(String token) {
         return Jwts.parser().verifyWith(getSignInKey()).build().parseSignedClaims(token).getPayload();
     }
 
     private SecretKey getSignInKey() {
-        byte[] keyBytes = SECRET_KEY.getBytes();
+        byte[] keyBytes = dotenv.get("JWT_SECRET").getBytes();
         return Keys.hmacShaKeyFor(keyBytes);
     }
 

@@ -22,6 +22,15 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(new ApiResponse(e.getMessage(), null), HttpStatus.NOT_FOUND);
     }
 
+    @ExceptionHandler(CategoryNotFoundException.class)
+    public ResponseEntity<ApiResponse> categoryNotFound(CategoryNotFoundException e) {
+        return new ResponseEntity<>(new ApiResponse(e.getMessage(), null), HttpStatus.NOT_FOUND);
+    }
+    @ExceptionHandler(FoodNotFoundException.class)
+    public ResponseEntity<ApiResponse> foodNotFound(FoodNotFoundException e) {
+        return new ResponseEntity<>(new ApiResponse(e.getMessage(), null), HttpStatus.NOT_FOUND);
+    }
+
     @ExceptionHandler(BadCredentialsException.class)
     public ResponseEntity<ApiResponse> badCredentials(BadCredentialsException e) {
         return new ResponseEntity<>(new ApiResponse(e.getMessage(), null), HttpStatus.UNAUTHORIZED);

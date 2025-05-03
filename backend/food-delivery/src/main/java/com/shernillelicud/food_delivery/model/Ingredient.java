@@ -22,5 +22,5 @@ public class Ingredient {
     private IngredientCategory category;
 
 
-    private boolean isInStock = true;
+    private Boolean isInStock = true;
 }

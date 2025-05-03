@@ -26,5 +26,9 @@ public class NewFoodRequest {
 
     private Boolean isSeasonal;
 
+    private Boolean isAvailable;
+
     private List<Ingredient> ingredients;
+
+
 }
