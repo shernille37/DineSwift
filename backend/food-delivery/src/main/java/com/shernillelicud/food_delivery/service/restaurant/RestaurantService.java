@@ -2,21 +2,16 @@ package com.shernillelicud.food_delivery.service.restaurant;
 
 import com.shernillelicud.food_delivery.dto.restaurant.RestaurantDto;
 import com.shernillelicud.food_delivery.exception.RestaurantNotFoundException;
-import com.shernillelicud.food_delivery.model.Address;
 import com.shernillelicud.food_delivery.model.Restaurant;
-import com.shernillelicud.food_delivery.model.RestaurantContact;
 import com.shernillelicud.food_delivery.model.User;
-import com.shernillelicud.food_delivery.repository.UserRepository;
+import com.shernillelicud.food_delivery.repository.user.UserRepository;
 import com.shernillelicud.food_delivery.repository.restaurant.AddressRepository;
 import com.shernillelicud.food_delivery.repository.restaurant.RestaurantContactRepository;
 import com.shernillelicud.food_delivery.repository.restaurant.RestaurantRepository;
 import com.shernillelicud.food_delivery.request.restaurant.NewRestaurantRequest;
-import com.shernillelicud.food_delivery.service.user.UserService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.List;
 

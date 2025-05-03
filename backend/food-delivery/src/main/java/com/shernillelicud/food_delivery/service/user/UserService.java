@@ -1,20 +1,16 @@
 package com.shernillelicud.food_delivery.service.user;
 
 
-import com.shernillelicud.food_delivery.dto.address.AddressDto;
-import com.shernillelicud.food_delivery.dto.restaurant.RestaurantDto;
 import com.shernillelicud.food_delivery.dto.user.UserDto;
 import com.shernillelicud.food_delivery.model.Address;
 import com.shernillelicud.food_delivery.model.User;
-import com.shernillelicud.food_delivery.repository.UserRepository;
+import com.shernillelicud.food_delivery.repository.user.UserRepository;
 import com.shernillelicud.food_delivery.request.user.NewAddressRequest;
 import com.shernillelicud.food_delivery.service.jwt.JwtService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor

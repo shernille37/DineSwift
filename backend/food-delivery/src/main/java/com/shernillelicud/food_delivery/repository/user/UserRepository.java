@@ -1,4 +1,4 @@
-package com.shernillelicud.food_delivery.repository;
+package com.shernillelicud.food_delivery.repository.user;
 
 import com.shernillelicud.food_delivery.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;

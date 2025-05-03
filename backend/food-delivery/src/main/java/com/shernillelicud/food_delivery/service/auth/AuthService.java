@@ -2,19 +2,16 @@ package com.shernillelicud.food_delivery.service.auth;
 
 import com.shernillelicud.food_delivery.dto.auth.AuthDto;
 import com.shernillelicud.food_delivery.model.User;
-import com.shernillelicud.food_delivery.repository.UserRepository;
+import com.shernillelicud.food_delivery.repository.user.UserRepository;
 import com.shernillelicud.food_delivery.request.auth.LoginRequest;
 import com.shernillelicud.food_delivery.request.auth.RegisterRequest;
 import com.shernillelicud.food_delivery.service.jwt.JwtService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
-import org.modelmapper.internal.bytebuddy.matcher.StringMatcher;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.AuthenticationException;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 

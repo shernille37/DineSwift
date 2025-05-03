@@ -1,15 +1,9 @@
 package com.shernillelicud.food_delivery.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.shernillelicud.food_delivery.dto.address.AddressDto;
-import com.shernillelicud.food_delivery.dto.restaurant.RestaurantDto;
-import com.shernillelicud.food_delivery.model.Address;
-import com.shernillelicud.food_delivery.model.Restaurant;
-import com.shernillelicud.food_delivery.repository.UserRepository;
+import com.shernillelicud.food_delivery.repository.user.UserRepository;
 import lombok.RequiredArgsConstructor;
-import org.modelmapper.AbstractConverter;
 import org.modelmapper.ModelMapper;
-import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -24,7 +18,6 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Configuration
