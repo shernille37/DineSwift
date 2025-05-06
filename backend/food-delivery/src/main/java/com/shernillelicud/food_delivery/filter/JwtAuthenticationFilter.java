@@ -43,6 +43,8 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
             jwt = authHeader.split(" ")[1];
             email = jwtService.extractEmail(jwt);
+
+//            If the user is not yet authenticated
             if(email != null && SecurityContextHolder.getContext().getAuthentication() == null) {
 
                 UserDetails userDetails = userDetailsService.loadUserByUsername(email);

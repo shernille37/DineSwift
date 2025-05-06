@@ -6,7 +6,6 @@ import com.shernillelicud.food_delivery.exception.FoodNotFoundException;
 import com.shernillelicud.food_delivery.exception.RestaurantNotFoundException;
 import com.shernillelicud.food_delivery.model.Category;
 import com.shernillelicud.food_delivery.model.Food;
-import com.shernillelicud.food_delivery.model.Ingredient;
 import com.shernillelicud.food_delivery.model.Restaurant;
 import com.shernillelicud.food_delivery.repository.food.CategoryRepository;
 import com.shernillelicud.food_delivery.repository.food.FoodRepository;
@@ -54,6 +53,7 @@ public class FoodService implements IFoodService {
         Food savedFood = foodRepository.save(newFood);
 
         restaurant.getFoods().add(savedFood);
+        category.getFoods().add(savedFood);
 
         restaurantRepository.save(restaurant);
 

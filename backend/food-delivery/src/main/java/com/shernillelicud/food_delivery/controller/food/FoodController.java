@@ -106,7 +106,6 @@ public class FoodController {
 
         foodService.deleteFood(Long.valueOf(id));
 
-
         ApiResponse apiResponse = ApiResponse.builder()
                 .message("Success")
                 .data(null)

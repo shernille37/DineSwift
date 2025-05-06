@@ -50,12 +50,10 @@ public class RestaurantService implements IRestaurantService {
         Restaurant newRestaurant = modelMapper.map(request, Restaurant.class);
 
         newRestaurant.setOwner(owner);
+        owner.getOwnedRestaurant().add(newRestaurant);
 
         return restaurantRepository.save(newRestaurant);
     }
-
-
-
 
     @Override
     public Restaurant updateRestaurant(Long id, NewRestaurantRequest request) {
