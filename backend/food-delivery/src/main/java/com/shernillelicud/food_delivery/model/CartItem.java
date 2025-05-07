@@ -7,6 +7,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Entity
 @Data
 @NoArgsConstructor
@@ -22,10 +24,19 @@ public class CartItem {
     @ManyToOne
     private Cart cart;
 
-    @ManyToOne
+    @OneToOne
     private Food food;
+
+    private List<Ingredient> ingredients;
 
     private Integer quantity;
 
     private Long totalPrice;
+
+    public Long calculateTotalPrice() {
+        this.totalPrice = food.getPrice() * quantity;
+
+        return this.totalPrice;
+    }
+
 }

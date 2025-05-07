@@ -29,5 +29,4 @@ public class Cart {
     private List<CartItem> cartItems = new ArrayList<>();
 
 
-
 }

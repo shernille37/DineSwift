@@ -11,4 +11,6 @@ public interface IIngredientService {
 
     public List<Ingredient> getAllIngredients();
 
+    public Ingredient updateStock(Long id);
+
 }

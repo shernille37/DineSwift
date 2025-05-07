@@ -1,6 +1,7 @@
 package com.shernillelicud.food_delivery.service.ingredient;
 
 import com.shernillelicud.food_delivery.exception.CategoryNotFoundException;
+import com.shernillelicud.food_delivery.exception.IngredientNotFoundException;
 import com.shernillelicud.food_delivery.model.Ingredient;
 import com.shernillelicud.food_delivery.model.IngredientCategory;
 import com.shernillelicud.food_delivery.repository.food.IngredientCategoryRepository;
@@ -40,5 +41,16 @@ public class IngredientService implements IIngredientService{
     @Override
     public List<Ingredient> getAllIngredients() {
         return ingredientRepository.findAll();
+    }
+
+    @Override
+    public Ingredient updateStock(Long id) {
+
+        Ingredient ingredient = ingredientRepository.findById(id)
+                .orElseThrow(IngredientNotFoundException::new);
+
+        ingredient.setIsInStock(!ingredient.getIsInStock());
+
+        return ingredientRepository.save(ingredient);
     }
 }

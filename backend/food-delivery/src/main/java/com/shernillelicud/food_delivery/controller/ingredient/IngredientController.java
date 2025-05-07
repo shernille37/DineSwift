@@ -35,4 +35,11 @@ public class IngredientController {
         return new ResponseEntity<>(new ApiResponse("Success", ingredients), HttpStatus.OK);
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<ApiResponse> updateStock(@PathVariable String id) {
+        Ingredient ingredient = ingredientService.updateStock(Long.valueOf(id));
+
+        return new ResponseEntity<>(new ApiResponse("Success", ingredient), HttpStatus.OK);
+    }
+
 }
